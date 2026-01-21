@@ -109,7 +109,7 @@ struct CreateAccountView: View {
                         .frame(height: 20)
                     
                     // Create Account Button
-                    NavigationLink(destination: AddChildProfileView()) {
+                    NavigationLink(destination: WelcomeView()) {
                         Text("Create account")
                             .font(.headline)
                             .foregroundColor(.white)

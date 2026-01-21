@@ -15,7 +15,7 @@ struct WelcomeView: View {
                 Image(systemName: "figure.and.child.holdinghands")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(height: 180)
+                    .frame(height: 140)
                     .foregroundStyle(
                         LinearGradient(
                             colors: [Color.accentPurple.opacity(0.6), Color.accentPurple.opacity(0.3)],
@@ -65,13 +65,8 @@ struct WelcomeView: View {
                 }
                 .padding(.horizontal)
 
-                Spacer()
-                    .frame(height: 20)
-
                 // Get Started Button
-                Button(action: {
-                    // Handle get started action
-                }) {
+                NavigationLink(destination: DashboardView()) {
                     Text("Get started")
                         .font(.headline)
                         .foregroundColor(.white)

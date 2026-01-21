@@ -88,6 +88,28 @@ struct ChildSelectorSection: View {
                         selectedChild = child.name
                     }
                 }
+                
+                // Add Child Button
+                NavigationLink(destination: AddChildProfileView()) {
+                    VStack(spacing: 8) {
+                        ZStack {
+                            Circle()
+                                .strokeBorder(style: StrokeStyle(lineWidth: 2, dash: [5]))
+                                .foregroundColor(Color.accentPurple.opacity(0.5))
+                                .frame(width: 70, height: 70)
+                            
+                            Image(systemName: "plus")
+                                .font(.system(size: 24))
+                                .foregroundColor(Color.accentPurple)
+                        }
+                        
+                        Text("Add")
+                            .font(.subheadline)
+                            .foregroundColor(Color.accentPurple)
+                    }
+                }
+                .buttonStyle(.plain)
+                
                 Spacer()
             }
         }
@@ -108,7 +130,7 @@ struct ChildAvatar: View {
                     Circle()
                         .fill(
                             LinearGradient(
-                                colors: [Color.orange.opacity(0.3), Color.pink.opacity(0.3)],
+                                colors: [Color.accentPurple.opacity(0.2)],
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
@@ -138,15 +160,15 @@ struct ChildAvatar: View {
 // MARK: - Quick Stats Section
 struct QuickStatsSection: View {
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: 8) {
             Text("Quick Stats")
-                .font(.title3)
+                .font(.headline)
                 .fontWeight(.semibold)
 
             LazyVGrid(columns: [
-                GridItem(.flexible(), spacing: 12),
-                GridItem(.flexible(), spacing: 12)
-            ], spacing: 12) {
+                GridItem(.flexible(), spacing: 8),
+                GridItem(.flexible(), spacing: 8)
+            ], spacing: 8) {
                 StatCard(
                     icon: "list.bullet.clipboard",
                     iconColor: Color.accentPurple,
@@ -192,29 +214,29 @@ struct StatCard: View {
     let subtitle: String?
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 4) {
             Image(systemName: icon)
-                .font(.title3)
+                .font(.body)
                 .foregroundColor(iconColor)
 
             Text(title)
-                .font(.caption)
+                .font(.caption2)
                 .foregroundColor(.secondary)
 
             Text(value)
-                .font(.title2)
+                .font(.headline)
                 .fontWeight(.bold)
 
             if let subtitle = subtitle {
                 Text(subtitle)
-                    .font(.caption)
+                    .font(.caption2)
                     .foregroundColor(.secondary)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding()
+        .padding(12)
         .background(Color(UIColor.systemBackground))
-        .cornerRadius(16)
+        .cornerRadius(12)
     }
 }
 
@@ -222,67 +244,114 @@ struct StatCard: View {
 struct ActionButtonsSection: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("What would you like to do?")
+            Text("Word Management")
                 .font(.title3)
                 .fontWeight(.semibold)
 
-            LazyVGrid(columns: [
-                GridItem(.flexible(), spacing: 12),
-                GridItem(.flexible(), spacing: 12)
-            ], spacing: 12) {
-                ActionButton(
-                    icon: "play.circle",
-                    title: "Start\nLearning\nSession",
-                    isPrimary: true
-                ) {}
-
-                ActionButton(
-                    icon: "plus",
-                    title: "Add Words",
-                    isPrimary: false
-                ) {}
-
-                ActionButton(
-                    icon: "list.bullet.clipboard",
-                    title: "View All Lists",
-                    isPrimary: false
-                ) {}
-
-                ActionButton(
-                    icon: "chart.bar",
-                    title: "View Progress\nReport",
-                    isPrimary: false
-                ) {}
+            VStack(spacing: 12) {
+                // Add Words Button
+                NavigationLink(destination: WordInputView()) {
+                    HStack(spacing: 16) {
+                        ZStack {
+                            Circle()
+                                .fill(Color.accentPurple.opacity(0.15))
+                                .frame(width: 50, height: 50)
+                            
+                            Image(systemName: "plus.circle.fill")
+                                .font(.title2)
+                                .foregroundColor(Color.accentPurple)
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Add Words")
+                                .font(.headline)
+                                .foregroundColor(.primary)
+                            
+                            Text("Create custom lists or select curated packs")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                        
+                        Spacer()
+                        
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.gray)
+                    }
+                    .padding()
+                    .background(Color(UIColor.systemBackground))
+                    .cornerRadius(16)
+                }
+                .buttonStyle(.plain)
+                
+                // View All Lists Button
+                NavigationLink(destination: WordListsView()) {
+                    HStack(spacing: 16) {
+                        ZStack {
+                            Circle()
+                                .fill(Color.accentPurple.opacity(0.15))
+                                .frame(width: 50, height: 50)
+                            
+                            Image(systemName: "list.bullet.clipboard.fill")
+                                .font(.title2)
+                                .foregroundColor(Color.accentPurple)
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("View All Lists")
+                                .font(.headline)
+                                .foregroundColor(.primary)
+                            
+                            Text("Browse and manage your word lists")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                        
+                        Spacer()
+                        
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.gray)
+                    }
+                    .padding()
+                    .background(Color(UIColor.systemBackground))
+                    .cornerRadius(16)
+                }
+                .buttonStyle(.plain)
+                
+                // Start Learning Session Button
+                Button(action: {}) {
+                    HStack(spacing: 16) {
+                        ZStack {
+                            Circle()
+                                .fill(Color.accentPurple)
+                                .frame(width: 50, height: 50)
+                            
+                            Image(systemName: "play.fill")
+                                .font(.title3)
+                                .foregroundColor(.white)
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Start Learning Session")
+                                .font(.headline)
+                                .foregroundColor(.primary)
+                            
+                            Text("Begin an interactive learning session")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                        
+                        Spacer()
+                        
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.gray)
+                    }
+                    .padding()
+                    .background(Color(UIColor.systemBackground))
+                    .cornerRadius(16)
+                }
+                .buttonStyle(.plain)
             }
         }
-    }
-}
-
-// MARK: - Action Button
-struct ActionButton: View {
-    let icon: String
-    let title: String
-    let isPrimary: Bool
-    let action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            VStack(spacing: 8) {
-                Image(systemName: icon)
-                    .font(.title2)
-
-                Text(title)
-                    .font(.subheadline)
-                    .fontWeight(.medium)
-                    .multilineTextAlignment(.center)
-            }
-            .frame(maxWidth: .infinity)
-            .frame(height: 100)
-            .foregroundColor(isPrimary ? .white : .primary)
-            .background(isPrimary ? Color.accentPurple : Color(UIColor.systemBackground))
-            .cornerRadius(16)
-        }
-        .buttonStyle(.plain)
     }
 }
 
