@@ -37,28 +37,31 @@ struct WordListsView: View {
                             }
                         }
                         .padding(.horizontal)
-                        
-                        Spacer()
-                            .frame(height: 20)
-                        
-                        // Create New List Button
-                        NavigationLink(destination: WordInputView()) {
-                            HStack {
-                                Image(systemName: "plus")
-                                    .font(.headline)
-                                Text("Create New List")
-                                    .font(.headline)
-                            }
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 16)
-                            .background(Color.accentPurple)
-                            .cornerRadius(12)
-                        }
-                        .padding(.horizontal)
-                        .padding(.bottom, 20)
+                        .padding(.bottom, 100)
                     }
                 }
+                
+                // Create New List Button (Sticky)
+                VStack(spacing: 0) {
+                    Divider()
+                    
+                    NavigationLink(destination: WordInputView()) {
+                        HStack {
+                            Image(systemName: "plus")
+                                .font(.headline)
+                            Text("Create New List")
+                                .font(.headline)
+                        }
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 16)
+                        .background(Color.accentPurple)
+                        .cornerRadius(12)
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 12)
+                }
+                .background(Color(UIColor.systemBackground))
                 
                 // Bottom Navigation
                 HStack(spacing: 0) {
@@ -82,9 +85,9 @@ struct WordListsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {}) {
-                        Image(systemName: "square.grid.2x2")
-                            .foregroundColor(.primary)
+                    NavigationLink(destination: DashboardView()) {
+                        Image(systemName: "house.fill")
+                            .foregroundColor(.accentPurple)
                     }
                 }
                 

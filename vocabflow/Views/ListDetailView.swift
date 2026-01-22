@@ -105,6 +105,14 @@ struct ListDetailView: View {
         .background(Color(UIColor.systemGroupedBackground))
         .navigationTitle(listName)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink(destination: DashboardView()) {
+                    Image(systemName: "house.fill")
+                        .foregroundColor(.accentPurple)
+                }
+            }
+        }
     }
 }
 

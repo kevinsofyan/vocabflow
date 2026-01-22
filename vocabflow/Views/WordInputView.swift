@@ -11,6 +11,7 @@ struct WordInputView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var listName: String = ""
     @State private var words: String = ""
+    var isOnboarding: Bool = false
     
     var body: some View {
         ScrollView {
@@ -76,16 +77,28 @@ struct WordInputView: View {
                         }
                         
                         // Add Custom List Button
-                        Button(action: {
-                            // Handle add custom list
-                        }) {
-                            Text("Add Custom List")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 16)
-                                .background(Color.accentPurple)
-                                .cornerRadius(12)
+                        if isOnboarding {
+                            NavigationLink(destination: WordCustomizationView()) {
+                                Text("Add Custom List")
+                                    .font(.headline)
+                                    .foregroundColor(.white)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 16)
+                                    .background(Color.accentPurple)
+                                    .cornerRadius(12)
+                            }
+                        } else {
+                            Button(action: {
+                                // Handle add custom list
+                            }) {
+                                Text("Add Custom List")
+                                    .font(.headline)
+                                    .foregroundColor(.white)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 16)
+                                    .background(Color.accentPurple)
+                                    .cornerRadius(12)
+                            }
                         }
                     }
                     .padding(.horizontal)
@@ -134,6 +147,14 @@ struct WordInputView: View {
         .navigationTitle("Add Words")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(false)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink(destination: DashboardView()) {
+                    Image(systemName: "house.fill")
+                        .foregroundColor(.accentPurple)
+                }
+            }
+        }
     }
 }
 

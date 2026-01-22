@@ -15,6 +15,7 @@ struct AddChildProfileView: View {
     @State private var showDashboard: Bool = false
     @State private var selectedImage: UIImage?
     @State private var showImagePicker: Bool = false
+    var isOnboarding: Bool = false
 
     private let gradeLevels = [
         "Kindergarten",
@@ -153,18 +154,31 @@ struct AddChildProfileView: View {
                     }
 
                     // Create Profile Button
-                    Button(action: {
-                        showDashboard = true
-                    }) {
-                        Text("Create Profile")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 16)
-                            .background(Color.accentPurple)
-                            .cornerRadius(28)
+                    if isOnboarding {
+                        NavigationLink(destination: WordInputView(isOnboarding: true)) {
+                            Text("Create Profile")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 16)
+                                .background(Color.accentPurple)
+                                .cornerRadius(28)
+                        }
+                        .padding(.top, 8)
+                    } else {
+                        Button(action: {
+                            showDashboard = true
+                        }) {
+                            Text("Create Profile")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 16)
+                                .background(Color.accentPurple)
+                                .cornerRadius(28)
+                        }
+                        .padding(.top, 8)
                     }
-                    .padding(.top, 8)
 
                     // Add another child section
                     VStack(spacing: 12) {
@@ -198,6 +212,14 @@ struct AddChildProfileView: View {
             .background(Color(red: 0.97, green: 0.97, blue: 0.98))
             .navigationTitle("Add Child Profile")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: DashboardView()) {
+                        Image(systemName: "house.fill")
+                            .foregroundColor(.accentPurple)
+                    }
+                }
+            }
             .sheet(isPresented: $showImagePicker) {
                 ImagePicker(selectedImage: $selectedImage)
             }

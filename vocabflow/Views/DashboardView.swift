@@ -249,40 +249,6 @@ struct ActionButtonsSection: View {
                 .fontWeight(.semibold)
 
             VStack(spacing: 12) {
-                // Add Words Button
-                NavigationLink(destination: WordInputView()) {
-                    HStack(spacing: 16) {
-                        ZStack {
-                            Circle()
-                                .fill(Color.accentPurple.opacity(0.15))
-                                .frame(width: 50, height: 50)
-                            
-                            Image(systemName: "plus.circle.fill")
-                                .font(.title2)
-                                .foregroundColor(Color.accentPurple)
-                        }
-                        
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("Add Words")
-                                .font(.headline)
-                                .foregroundColor(.primary)
-                            
-                            Text("Create custom lists or select curated packs")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                        }
-                        
-                        Spacer()
-                        
-                        Image(systemName: "chevron.right")
-                            .foregroundColor(.gray)
-                    }
-                    .padding()
-                    .background(Color(UIColor.systemBackground))
-                    .cornerRadius(16)
-                }
-                .buttonStyle(.plain)
-                
                 // View All Lists Button
                 NavigationLink(destination: WordListsView()) {
                     HStack(spacing: 16) {
