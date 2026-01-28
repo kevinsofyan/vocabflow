@@ -64,6 +64,8 @@ struct WelcomeView: View {
                     )
                 }
                 .padding(.horizontal)
+                
+                Spacer()
 
                 // Get Started Button
                 NavigationLink(destination: CreateAccountView()) {
@@ -76,7 +78,6 @@ struct WelcomeView: View {
                         .cornerRadius(28)
                 }
                 .padding(.horizontal)
-                .padding(.bottom, 30)
             }
         }
         .navigationTitle("Welcome")
