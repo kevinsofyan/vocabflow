@@ -66,7 +66,7 @@ struct WelcomeView: View {
                 .padding(.horizontal)
 
                 // Get Started Button
-                NavigationLink(destination: DashboardView()) {
+                NavigationLink(destination: CreateAccountView()) {
                     Text("Get started")
                         .font(.headline)
                         .foregroundColor(.white)

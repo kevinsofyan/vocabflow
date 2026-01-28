@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		20C5360B2F29D10800DAB639 /* .gitignore in Sources */ = {isa = PBXBuildFile; fileRef = 20C5360A2F29D0FA00DAB639 /* .gitignore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		A9BC5CA92F1E4F24000AA0F9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		20C5360A2F29D0FA00DAB639 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = .gitignore; sourceTree = "<group>"; };
 		A9BC5C972F1E4F23000AA0F9 /* vocabflow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = vocabflow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9BC5CA82F1E4F24000AA0F9 /* vocabflowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vocabflowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9BC5CB22F1E4F24000AA0F9 /* vocabflowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = vocabflowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +93,7 @@
 		A9BC5C8E2F1E4F23000AA0F9 = {
 			isa = PBXGroup;
 			children = (
+				20C5360A2F29D0FA00DAB639 /* .gitignore */,
 				A9BC5C992F1E4F23000AA0F9 /* vocabflow */,
 				A9BC5CAB2F1E4F24000AA0F9 /* vocabflowTests */,
 				A9BC5CB52F1E4F24000AA0F9 /* vocabflowUITests */,
@@ -249,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20C5360B2F29D10800DAB639 /* .gitignore in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

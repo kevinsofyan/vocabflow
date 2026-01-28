@@ -1,0 +1,9 @@
+# .gitignore
+# vocabflow
+# Created by Vinleon Ang on 1/28/26.
+
+# Xcode user data
+*/xcuserdata/
+*/*.xcuserdatad
+*.xcuserstate
+

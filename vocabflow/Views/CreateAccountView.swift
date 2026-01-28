@@ -13,7 +13,6 @@ struct CreateAccountView: View {
     @State private var isPasswordVisible: Bool = false
     
     var body: some View {
-        NavigationStack {
             ScrollView {
                 VStack(spacing: 24) {
                     // Logo
@@ -109,7 +108,7 @@ struct CreateAccountView: View {
                         .frame(height: 20)
                     
                     // Create Account Button
-                    NavigationLink(destination: WelcomeView()) {
+                    NavigationLink(destination: AddChildProfileView()) {
                         Text("Create account")
                             .font(.headline)
                             .foregroundColor(.white)
@@ -138,7 +137,6 @@ struct CreateAccountView: View {
             }
             .navigationTitle("Create Account")
             .navigationBarTitleDisplayMode(.inline)
-        }
     }
 }
 

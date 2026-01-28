@@ -12,7 +12,7 @@ struct AddChildProfileView: View {
     @State private var dateOfBirth: Date = Date()
     @State private var showDatePicker: Bool = false
     @State private var selectedGradeLevel: String = ""
-    @State private var showDashboard: Bool = false
+    @State private var showWordInput: Bool = false
     @State private var selectedImage: UIImage?
     @State private var showImagePicker: Bool = false
 
@@ -29,8 +29,8 @@ struct AddChildProfileView: View {
     ]
 
     var body: some View {
-        if showDashboard {
-            DashboardView()
+        if showWordInput {
+            WordInputView()
         } else {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
@@ -153,8 +153,9 @@ struct AddChildProfileView: View {
                     }
 
                     // Create Profile Button
+                    
                     Button(action: {
-                        showDashboard = true
+                        showWordInput = true
                     }) {
                         Text("Create Profile")
                             .font(.headline)
@@ -245,7 +246,7 @@ struct ImagePicker: UIViewControllerRepresentable {
 }
 
 #Preview {
-    NavigationStack {
+    NavigationStack{
         AddChildProfileView()
     }
 }
