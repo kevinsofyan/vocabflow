@@ -144,16 +144,30 @@ struct ProgressReportView: View {
                 
                 // Bottom Navigation
                 HStack(spacing: 0) {
-                    TabButton(icon: "list.bullet.clipboard", label: "Lists", isSelected: selectedTab == 0) {
-                        selectedTab = 0
+                    NavigationLink(destination: DashboardView()) {
+                        VStack(spacing: 4) {
+                            Image(systemName: "house.fill")
+                                .font(.system(size: 20))
+                            Text("Dashboard")
+                                .font(.caption)
+                        }
+                        .foregroundColor(.gray)
+                        .frame(maxWidth: .infinity)
+                    }
+                    
+                    NavigationLink(destination: WordListsView()) {
+                        VStack(spacing: 4) {
+                            Image(systemName: "list.bullet.clipboard")
+                                .font(.system(size: 20))
+                            Text("Lists")
+                                .font(.caption)
+                        }
+                        .foregroundColor(.gray)
+                        .frame(maxWidth: .infinity)
                     }
                     
                     TabButton(icon: "chart.bar", label: "Progress", isSelected: selectedTab == 1) {
                         selectedTab = 1
-                    }
-                    
-                    TabButton(icon: "person", label: "Profile", isSelected: selectedTab == 2) {
-                        selectedTab = 2
                     }
                 }
                 .padding(.vertical, 8)
@@ -163,13 +177,6 @@ struct ProgressReportView: View {
             .background(Color(UIColor.systemGroupedBackground))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    NavigationLink(destination: DashboardView()) {
-                        Image(systemName: "house.fill")
-                            .foregroundColor(.accentPurple)
-                    }
-                }
-                
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {}) {
                         Image(systemName: "square.and.arrow.up")

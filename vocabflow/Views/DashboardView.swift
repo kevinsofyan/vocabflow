@@ -10,6 +10,7 @@ import UIKit
 
 struct DashboardView: View {
     @State private var selectedChild: String = "Lily"
+    @State private var selectedTab = 0
 
     private let children = [
         ChildProfile(name: "Lily", imageName: "person.crop.circle.fill", isPlaceholder: true),
@@ -19,6 +20,7 @@ struct DashboardView: View {
 
     var body: some View {
         NavigationStack {
+            VStack(spacing: 0) {
             ScrollView(.vertical, showsIndicators: true) {
             VStack(alignment: .leading, spacing: 24) {
                 // Who's learning today
@@ -38,17 +40,44 @@ struct DashboardView: View {
             }
             .padding(.horizontal)
             .padding(.top, 8)
-            .padding(.bottom, 40)
+            .padding(.bottom, 100)
         }
+                
+                // Bottom Navigation
+                HStack(spacing: 0) {
+                    TabButton(icon: "house.fill", label: "Dashboard", isSelected: selectedTab == 0) {
+                        selectedTab = 0
+                    }
+                    
+                    NavigationLink(destination: WordListsView()) {
+                        VStack(spacing: 4) {
+                            Image(systemName: "list.bullet.clipboard")
+                                .font(.system(size: 20))
+                            Text("Lists")
+                                .font(.caption)
+                        }
+                        .foregroundColor(.gray)
+                        .frame(maxWidth: .infinity)
+                    }
+                    
+                    NavigationLink(destination: ProgressReportView()) {
+                        VStack(spacing: 4) {
+                            Image(systemName: "chart.bar")
+                                .font(.system(size: 20))
+                            Text("Progress")
+                                .font(.caption)
+                        }
+                        .foregroundColor(.gray)
+                        .frame(maxWidth: .infinity)
+                    }
+                }
+                .padding(.vertical, 8)
+                .background(Color(UIColor.systemBackground))
+                .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: -2)
+            }
         .background(Color(UIColor.systemGroupedBackground))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {}) {
-                    Image(systemName: "list.bullet.rectangle")
-                        .foregroundColor(.primary)
-                }
-            }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {}) {
                     Image(systemName: "gearshape")
@@ -284,7 +313,7 @@ struct ActionButtonsSection: View {
                 .buttonStyle(.plain)
                 
                 // Start Learning Session Button
-                Button(action: {}) {
+                NavigationLink(destination: LearningSessionView()) {
                     HStack(spacing: 16) {
                         ZStack {
                             Circle()
