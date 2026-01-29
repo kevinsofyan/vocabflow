@@ -64,9 +64,11 @@ struct WelcomeView: View {
                     )
                 }
                 .padding(.horizontal)
+                
+                Spacer()
 
                 // Get Started Button
-                NavigationLink(destination: AddChildProfileView(isOnboarding: true)) {
+                NavigationLink(destination: CreateAccountView()) {
                     Text("Get started")
                         .font(.headline)
                         .foregroundColor(.white)
@@ -76,7 +78,6 @@ struct WelcomeView: View {
                         .cornerRadius(28)
                 }
                 .padding(.horizontal)
-                .padding(.bottom, 30)
             }
         }
         .navigationTitle("Welcome")

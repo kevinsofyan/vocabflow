@@ -12,7 +12,7 @@ struct AddChildProfileView: View {
     @State private var dateOfBirth: Date = Date()
     @State private var showDatePicker: Bool = false
     @State private var selectedGradeLevel: String = ""
-    @State private var showDashboard: Bool = false
+    @State private var showWordInput: Bool = false
     @State private var selectedImage: UIImage?
     @State private var showImagePicker: Bool = false
     var isOnboarding: Bool = false
@@ -30,8 +30,8 @@ struct AddChildProfileView: View {
     ]
 
     var body: some View {
-        if showDashboard {
-            DashboardView()
+        if showWordInput {
+            WordInputView()
         } else {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
@@ -154,30 +154,17 @@ struct AddChildProfileView: View {
                     }
 
                     // Create Profile Button
-                    if isOnboarding {
-                        NavigationLink(destination: WordInputView(isOnboarding: true)) {
-                            Text("Create Profile")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 16)
-                                .background(Color.accentPurple)
-                                .cornerRadius(28)
-                        }
-                        .padding(.top, 8)
-                    } else {
-                        Button(action: {
-                            showDashboard = true
-                        }) {
-                            Text("Create Profile")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 16)
-                                .background(Color.accentPurple)
-                                .cornerRadius(28)
-                        }
-                        .padding(.top, 8)
+                    
+                    Button(action: {
+                        showWordInput = true
+                    }) {
+                        Text("Create Profile")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 16)
+                            .background(Color.accentPurple)
+                            .cornerRadius(28)
                     }
 
                     // Add another child section
@@ -267,7 +254,7 @@ struct ImagePicker: UIViewControllerRepresentable {
 }
 
 #Preview {
-    NavigationStack {
+    NavigationStack{
         AddChildProfileView()
     }
 }
