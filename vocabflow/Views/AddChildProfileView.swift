@@ -15,6 +15,7 @@ struct AddChildProfileView: View {
     @State private var showWordInput: Bool = false
     @State private var selectedImage: UIImage?
     @State private var showImagePicker: Bool = false
+    var isOnboarding: Bool = false
 
     private let gradeLevels = [
         "Kindergarten",
@@ -165,7 +166,6 @@ struct AddChildProfileView: View {
                             .background(Color.accentPurple)
                             .cornerRadius(28)
                     }
-                    .padding(.top, 8)
 
                     // Add another child section
                     VStack(spacing: 12) {
@@ -199,6 +199,14 @@ struct AddChildProfileView: View {
             .background(Color(red: 0.97, green: 0.97, blue: 0.98))
             .navigationTitle("Add Child Profile")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: DashboardView()) {
+                        Image(systemName: "house.fill")
+                            .foregroundColor(.accentPurple)
+                    }
+                }
+            }
             .sheet(isPresented: $showImagePicker) {
                 ImagePicker(selectedImage: $selectedImage)
             }

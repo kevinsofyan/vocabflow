@@ -37,41 +37,58 @@ struct WordListsView: View {
                             }
                         }
                         .padding(.horizontal)
-                        
-                        Spacer()
-                            .frame(height: 20)
-                        
-                        // Create New List Button
-                        NavigationLink(destination: WordInputView()) {
-                            HStack {
-                                Image(systemName: "plus")
-                                    .font(.headline)
-                                Text("Create New List")
-                                    .font(.headline)
-                            }
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 16)
-                            .background(Color.accentPurple)
-                            .cornerRadius(12)
-                        }
-                        .padding(.horizontal)
-                        .padding(.bottom, 20)
+                        .padding(.bottom, 100)
                     }
                 }
                 
+                // Create New List Button (Sticky)
+                VStack(spacing: 0) {
+                    Divider()
+                    
+                    NavigationLink(destination: WordInputView()) {
+                        HStack {
+                            Image(systemName: "plus")
+                                .font(.headline)
+                            Text("Create New List")
+                                .font(.headline)
+                        }
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 16)
+                        .background(Color.accentPurple)
+                        .cornerRadius(12)
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 12)
+                }
+                .background(Color(UIColor.systemBackground))
+                
                 // Bottom Navigation
                 HStack(spacing: 0) {
+                    NavigationLink(destination: DashboardView()) {
+                        VStack(spacing: 4) {
+                            Image(systemName: "house.fill")
+                                .font(.system(size: 20))
+                            Text("Dashboard")
+                                .font(.caption)
+                        }
+                        .foregroundColor(.gray)
+                        .frame(maxWidth: .infinity)
+                    }
+                    
                     TabButton(icon: "list.bullet.clipboard", label: "Lists", isSelected: selectedTab == 0) {
                         selectedTab = 0
                     }
                     
-                    TabButton(icon: "chart.bar", label: "Progress", isSelected: selectedTab == 1) {
-                        selectedTab = 1
-                    }
-                    
-                    TabButton(icon: "person", label: "Profile", isSelected: selectedTab == 2) {
-                        selectedTab = 2
+                    NavigationLink(destination: ProgressReportView()) {
+                        VStack(spacing: 4) {
+                            Image(systemName: "chart.bar")
+                                .font(.system(size: 20))
+                            Text("Progress")
+                                .font(.caption)
+                        }
+                        .foregroundColor(.gray)
+                        .frame(maxWidth: .infinity)
                     }
                 }
                 .padding(.vertical, 8)
@@ -81,13 +98,6 @@ struct WordListsView: View {
             .background(Color(UIColor.systemGroupedBackground))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {}) {
-                        Image(systemName: "square.grid.2x2")
-                            .foregroundColor(.primary)
-                    }
-                }
-                
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {}) {
                         Image(systemName: "gearshape")
