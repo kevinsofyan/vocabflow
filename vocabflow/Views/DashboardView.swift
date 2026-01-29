@@ -29,11 +29,73 @@ struct DashboardView: View {
                     selectedChild: $selectedChild
                 )
 
+                // Start Learning Session - Main CTA
+                NavigationLink(destination: LearningSessionView()) {
+                    HStack(spacing: 16) {
+                        ZStack {
+                            Circle()
+                                .fill(Color.white)
+                                .frame(width: 60, height: 60)
+                            
+                            Image(systemName: "play.fill")
+                                .font(.system(size: 24))
+                                .foregroundColor(Color.accentPurple)
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Start Learning Session")
+                                .font(.title3)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.white)
+                            
+                            Text("Practice today's words")
+                                .font(.subheadline)
+                                .foregroundColor(.white.opacity(0.9))
+                        }
+                        
+                        Spacer()
+                        
+                        Image(systemName: "chevron.right")
+                            .font(.title3)
+                            .foregroundColor(.white)
+                    }
+                    .padding(20)
+                    .background(
+                        LinearGradient(
+                            colors: [Color.accentPurple, Color.accentPurple.opacity(0.8)],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+                    .cornerRadius(20)
+                    .shadow(color: Color.accentPurple.opacity(0.4), radius: 10, x: 0, y: 5)
+                }
+                .buttonStyle(.plain)
+
                 // Quick Stats
                 QuickStatsSection()
 
-                // What would you like to do?
-                ActionButtonsSection()
+                // View All Lists
+                NavigationLink(destination: WordListsView()) {
+                    HStack {
+                        Image(systemName: "list.bullet.clipboard")
+                            .font(.title3)
+                            .foregroundColor(Color.accentPurple)
+                        
+                        Text("View All Word Lists")
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                        
+                        Spacer()
+                        
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.gray)
+                    }
+                    .padding()
+                    .background(Color(UIColor.systemBackground))
+                    .cornerRadius(12)
+                }
+                .buttonStyle(.plain)
 
                 // Recent Activity
                 RecentActivitySection()
